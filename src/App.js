@@ -1,24 +1,22 @@
-import logo from './logo.svg';
+import AnalogClock from './components/AnalogClock';
+import Alarm from './context/Alarm';
+import AlarmOption from './components/AlarmOption';
+import DigitalClock from './components/DigitalClock';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="clock container">
+      <div className="clock-container grid">
+        <div className="clock-content grid">
+          <Alarm>
+            <AnalogClock />
+            <DigitalClock />
+            <AlarmOption />
+          </Alarm>
+        </div>
+      </div>
+    </section>
   );
 }
 
