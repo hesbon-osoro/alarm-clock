@@ -1,0 +1,22 @@
+.clock-text {
+  display: flex;
+  justify-content: center;
+}
+
+.clock-text-hour,
+.clock-text-minutes {
+  font-size: var(--biggest-font-size);
+  font-weight: var(--font-medium);
+  color: var(--title-color);
+}
+.clock-text-ampm {
+  font-size: var(--tiny-font-size);
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+  margin-left: var(--mb-0-25);
+}
+.clock-date {
+  text-align: center;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+}
