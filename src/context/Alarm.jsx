@@ -43,6 +43,7 @@ function Alarm({ children }) {
       setYearNow(year);
     }, 1000);
   }, []);
+
   if (alarmTime === `${hourDigital}:${minutesDigital} ${amPm}`) {
     alarm.play();
     alarm.loop = true;
