@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { minutesNumber, hourNumber } from '../utils/fixNumber';
 import useSelect from '../hooks/useSelect';
 import { AlarmContext } from '../context/Alarm';
+import Silence from '../assets/silence-10ms.mp3';
 import './alarmOption.css';
 
 const AlarmOption = () => {
@@ -26,6 +27,10 @@ const AlarmOption = () => {
     ) {
       setHasAlarm(true);
       setAlarmTime(`${hour}:${minutes} ${amPmOption}`);
+
+      // Workaround for Safari which won't play audio unless it is user initiated. Playing 10ms of
+      // silence here so the alarm bell is permitted to play at the scheduled time.
+      new Audio(Silence).play();
     }
   };
   return (
