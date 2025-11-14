@@ -4,21 +4,24 @@ import AlarmOption from './components/AlarmOption';
 import DigitalClock from './components/DigitalClock';
 import './App.css';
 import ProximitySensor, { onMouseMove } from './components/ProximitySensor';
+import { ToastProvider } from './context/ToastContext';
 
 function App() {
   return (
-    <section className="clock container" onMouseMove={onMouseMove}>
-      <ProximitySensor />
-      <div className="clock-container grid">
-        <div className="clock-content grid">
-          <Alarm>
-            <AnalogClock />
-            <DigitalClock />
-            <AlarmOption />
-          </Alarm>
+    <ToastProvider>
+      <section className="clock container" onMouseMove={onMouseMove}>
+        <ProximitySensor />
+        <div className="clock-container grid">
+          <div className="clock-content grid">
+            <Alarm>
+              <AnalogClock />
+              <DigitalClock />
+              <AlarmOption />
+            </Alarm>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </ToastProvider>
   );
 }
 
