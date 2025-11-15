@@ -19,29 +19,33 @@ const AlarmOption = () => {
     if (hasAlarm) {
       pauseAlarm();
       setHasAlarm(false);
+      addToast('Alarm cleared', 'info');
       return;
     }
-    // Toggle alarm ON
+    // Toggle alarm ON - validate inputs first
     if (
-      !hour.includes('Hour') &&
-      !minutes.includes('Minutes') &&
-      !amPmOption.includes('AM/PM')
+      hour.includes('Hour') ||
+      minutes.includes('Minutes') ||
+      amPmOption.includes('AM/PM')
     ) {
-      setHasAlarm(true);
-      setAlarmTime(`${hour}:${minutes} ${amPmOption}`);
+      addToast('Please select hour, minutes, and AM/PM to set alarm', 'error');
+      return;
+    }
 
-      // Workaround for Safari/iOS which won't play audio unless it is user initiated.
-      // Playing 10ms of silence here so the alarm bell is permitted to play at the scheduled time.
-      try {
-        const silenceAudio = new Audio(Silence);
-        await silenceAudio.play();
-        addToast(`Alarm set for ${hour}:${minutes} ${amPmOption}`, 'success');
-      } catch (error) {
-        addToast(
-          'Warning: Audio may not play on Safari/iOS. Please interact with the page first.',
-          'warning'
-        );
-      }
+    setHasAlarm(true);
+    setAlarmTime(`${hour}:${minutes} ${amPmOption}`);
+
+    // Workaround for Safari/iOS which won't play audio unless it is user initiated.
+    // Playing 10ms of silence here so the alarm bell is permitted to play at the scheduled time.
+    try {
+      const silenceAudio = new Audio(Silence);
+      await silenceAudio.play();
+      addToast(`Alarm set for ${hour}:${minutes} ${amPmOption}`, 'success');
+    } catch (error) {
+      addToast(
+        'Warning: Audio may not play on Safari/iOS. Please interact with the page first.',
+        'warning'
+      );
     }
   };
   return (
